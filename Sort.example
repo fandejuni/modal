@@ -1,0 +1,6 @@
+Collections.sort(Y, new Comparator<Point>() {
+    public int compare(Point p, Point q) {
+        if (p.y!=q.y) return p.y-q.y;
+        else return p.x - q.x;
+    }
+});

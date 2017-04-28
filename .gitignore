@@ -1,0 +1,9 @@
+*.in
+*.out
+*.zip
+*.class
+*~
+.classpath
+.project
+bin/*
+bin
