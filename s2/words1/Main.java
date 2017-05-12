@@ -34,8 +34,9 @@ class Main {
                 m.get(a).add(b);
                 m.get(b).add(a);
                 count.put(a, count.get(a) + 1);
-                count.put(a, count.get(a) - 1);
+                count.put(b, count.get(b) - 1);
             }
+
 
             // est connexe ?
             Stack<Character> to_see = new Stack<Character>();
@@ -51,10 +52,25 @@ class Main {
                 }
             }
             boolean b = true;
+            boolean vu_1 = false;
+            boolean vu_m1 = false;
             for (Character x: all) {
-                b = b && count.get(x) == 0;
+                if (count.get(x) == 1) {
+                    if (!vu_1)
+                        vu_1 = true;
+                    else
+                        b = false;
+                }
+                else if (count.get(x) == -1) {
+                    if (!vu_m1)
+                        vu_m1 = true;
+                    else
+                        b = false;
+                }
+                else
+                    b = b && count.get(x) == 0;
             }
-            b = b && (vus.size() == all.size());
+            b = b && (vus.size() == all.size()) && ((vu_1 && vu_m1) || (!vu_1 && !vu_m1));
             if (b)
                 System.out.println("Ordering is possible.");
             else
